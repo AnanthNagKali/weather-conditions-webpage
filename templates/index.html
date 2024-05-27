@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Information</title>
+</head>
+<body style="background-color: lightsalmon;">
+    <CENTER> <h1>Weather Information</h1>
+        <form action="/get_weather" method="POST">
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required>
+            <input type="submit" value="Get Weather">
+        </form>
+        {% if weather %}
+        <h2>Weather in {{city}}</h2>
+        <table style="border:1px solid black;">
+            <tr>
+                <td>Temperature</td>
+                <td>{{weather['main']['temp']}}</td>
+            </tr>
+            <tr>
+                <td>Weather</td>
+                <td>{{weather['weather'][0]['description']}}</td>
+            </tr>
+            <tr>
+                <td>Humidity</td>
+                <td>{{weather['main']['humidity']}}%</td>
+            </tr>
+            <tr>
+                <td>Wind Speed</td>
+                <td>{{weather['wind']['speed']}}m/s</td>
+            </tr>
+        </table>
+        {% elif error %}
+        <p>{{error}}</p>
+        {% endif %}
+    </CENTER>
+</body>
+</html>
